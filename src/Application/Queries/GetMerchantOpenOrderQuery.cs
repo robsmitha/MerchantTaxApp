@@ -52,10 +52,14 @@ namespace Application.Queries
             public async Task<OrderModel> Handle(GetMerchantOpenOrderQuery request, CancellationToken cancellationToken)
             {
                 var order = await _merchantService.GetMerchantOpenOrderAsync(request.MerchantId);
-                var merchant = await _merchantService.GetMerchantAsync(request.MerchantId);
-                var taxRate = await _taxJarService.GetTaxRateAsync(merchant.Zip);
-                var salesTax = await _taxJarService.CalculateSalesTaxAsync("US", merchant.Zip, taxRate.rate.state, (float)order.ShippingTotal, (float)order.SubTotal);
-                order.TaxAmount = Convert.ToDecimal(salesTax.tax.amount_to_collect);
+                if (order.LineItems.Any())
+                {
+                    var merchant = await _merchantService.GetMerchantAsync(request.MerchantId);
+                    var taxRate = await _taxJarService.GetTaxRateAsync(merchant.Zip);
+                    var salesTax = await _taxJarService.CalculateSalesTaxAsync("US", merchant.Zip, taxRate.State, (float)order.ShippingTotal, (float)order.SubTotal);
+                    order.TaxAmount = Convert.ToDecimal(salesTax.TaxAmount);
+                    order.TaxRate = taxRate.TaxRate;
+                }
                 return order;
             }
         }

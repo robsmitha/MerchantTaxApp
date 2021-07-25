@@ -15,8 +15,8 @@ namespace Infrastructure.Services
 {
     public class TaxService : ITaxService
     {
-        private readonly ITaxJarCalculator _taxCalculator;
-        public TaxService(ITaxJarCalculator taxCalculator)
+        private readonly ITaxCalculator _taxCalculator;
+        public TaxService(ITaxCalculator taxCalculator)
         {
             _taxCalculator = taxCalculator;
         }

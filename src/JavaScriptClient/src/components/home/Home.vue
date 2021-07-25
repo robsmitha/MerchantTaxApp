@@ -18,7 +18,11 @@
           </v-card>
           <v-card v-else v-for="item in merchantItems.data" :key="item.id" class="mb-3">
             <v-card-title>{{ item.name }}<v-spacer/><span class="body-2">{{ item.price }}</span></v-card-title>
-            <v-card-subtitle>Max Allowed: {{ item.maxAllowed }}</v-card-subtitle>
+            <v-card-subtitle class="d-flex">
+              <span>Max Allowed: {{ item.maxAllowed }}</span>
+              <v-spacer/>
+              <span>Shipping: {{ item.shipping }}</span>
+            </v-card-subtitle>
             <v-card-text>
               <span>{{ item.description }}</span>
             </v-card-text>
@@ -119,9 +123,9 @@
                     ${{openOrder.data.shippingTotal}}
                   </v-list-item-title>
                   <v-list-item-title class="d-flex">
-                    Tax
+                    Tax&nbsp;<span class="caption">{{openOrder.data.displayTaxRate}}</span>
                     <v-spacer />
-                    ${{openOrder.data.taxAmount}}
+                    {{openOrder.data.displayTaxAmount}}
                   </v-list-item-title>
                   <v-list-item-title class="d-flex">
                     Total

@@ -3,6 +3,7 @@ using Application.Common.Models;
 using FluentValidation;
 using MediatR;
 using System;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -52,11 +53,15 @@ namespace Application.Queries
 
             public async Task<OrderModel> Handle(GetMerchantOrderQuery request, CancellationToken cancellationToken)
             {
-                var merchant = await _merchantService.GetMerchantAsync(request.MerchantId);
-                var taxRate = await _taxJarService.GetTaxRateAsync(merchant.Zip);
                 var order = await _merchantService.GetMerchantOrderAsync(request.MerchantId, request.OrderId);
-                var salesTax = await _taxJarService.CalculateSalesTaxAsync("US", merchant.Zip, taxRate.rate.state, (float)order.ShippingTotal, (float)order.SubTotal);
-                order.TaxAmount = Convert.ToDecimal(salesTax.tax.amount_to_collect);
+                if (order.LineItems.Any())
+                {
+                    var merchant = await _merchantService.GetMerchantAsync(request.MerchantId);
+                    var taxRate = await _taxJarService.GetTaxRateAsync(merchant.Zip);
+                    var salesTax = await _taxJarService.CalculateSalesTaxAsync("US", merchant.Zip, taxRate.State, (float)order.ShippingTotal, (float)order.SubTotal);
+                    order.TaxAmount = Convert.ToDecimal(salesTax.TaxAmount);
+                    order.TaxRate = taxRate.TaxRate;
+                }
                 return order;
             }
         }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Application.Common.Interfaces
 {
-    public interface ITaxJarCalculator
+    public interface ITaxCalculator
     {
         Task<CalculateSalesTaxModel> CalculateSalesTaxAsync(string to_country, string to_zip, string to_state, float shipping, float amount);
         Task<TaxRateModel> GetTaxRateAsync(string zip);

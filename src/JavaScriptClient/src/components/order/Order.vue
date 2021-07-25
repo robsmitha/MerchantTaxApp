@@ -70,9 +70,9 @@
                     ${{order.data.shippingTotal}}
                   </v-list-item-title>
                   <v-list-item-title class="d-flex">
-                    Tax
+                    Tax&nbsp;<span class="caption">{{order.data.displayTaxRate}}</span>
                     <v-spacer />
-                    ${{order.data.taxAmount}}
+                    {{order.data.displayTaxAmount}}
                   </v-list-item-title>
                   <v-list-item-title class="d-flex">
                     Total

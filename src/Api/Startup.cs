@@ -28,11 +28,22 @@ namespace Api
             services.AddInfrastructure();
             services.AddApplication(Configuration);
 
-            services.Configure<TaxJarSettings>(Configuration.GetSection(nameof(TaxJarSettings)));
+            var taxCalculatorSettings = Configuration.GetSection("Configuration")?["TaxCalculatorSettings"];
+            switch(taxCalculatorSettings)
+            {
+                case nameof(ZipTaxSettings):
+                    services.Configure<ZipTaxSettings>(Configuration.GetSection(nameof(ZipTaxSettings)));
+                    services.AddHttpClient<ITaxCalculator, ZipTaxCalculator>();
+                    break;
+                case nameof(TaxJarSettings):
+                default:
+                    services.Configure<TaxJarSettings>(Configuration.GetSection(nameof(TaxJarSettings)));
+                    services.AddHttpClient<ITaxCalculator, TaxJarCalculator>();
+                    break;
+            }
             services.AddTransient<IMerchantService, MerchantService>();
             services.AddTransient<ITaxService, TaxService>();
-            services.AddTransient<ITaxJarCalculator, TaxJarCalculator>();
-            services.AddHttpClient<IExternalService, ExternalService>();
+            
 
             services.AddControllers();
 
