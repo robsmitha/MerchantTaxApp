@@ -29,22 +29,10 @@ namespace Application.Commands
             {
                 _context = context;
 
-                RuleFor(v => v.ItemId)
-                    .NotEmpty()
-                    .MustAsync(BeValidItem)
-                        .WithMessage("The item does not exist or is not active.");
-
                 RuleFor(v => v.MerchantId)
                     .NotEmpty()
                     .MustAsync(BeOpenOrder)
                         .WithMessage("The order does not exist or is not in open status.");
-            }
-
-            private async Task<bool> BeValidItem(int itemId,
-                CancellationToken cancellationToken)
-            {
-                var item = await _context.Items.FindAsync(itemId);
-                return item != null && item.Active;
             }
 
             private async Task<bool> BeOpenOrder(RemoveLineItemCommand args, int merchantId,

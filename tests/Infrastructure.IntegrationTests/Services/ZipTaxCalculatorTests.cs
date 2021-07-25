@@ -23,5 +23,14 @@ namespace Infrastructure.IntegrationTests.Services
             var taxRate = await _zipTaxCalculator.GetTaxRateAsync(merchant.Zip);
             Assert.True(taxRate.TaxRate > 0);
         }
+
+        [Fact]
+        public async Task ZipTaxCalculator_CalculateSalesTaxAsync_ReturnsCalculateSalesTaxModel()
+        {
+            var merchant = await _context.Merchants.FirstAsync();
+            var taxRate = await _zipTaxCalculator.GetTaxRateAsync(merchant.Zip);
+            var model = await _taxJarCalculator.CalculateSalesTaxAsync("US", merchant.Zip, taxRate.State, 19.99f, 200f);
+            Assert.True(model.TaxAmount > 0);
+        }
     }
 }
