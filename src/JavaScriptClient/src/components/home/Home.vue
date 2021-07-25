@@ -115,12 +115,12 @@
                   <v-list-item-title class="d-flex">
                     Subtotal
                     <v-spacer />
-                    ${{openOrder.data.subTotal}}
+                    {{openOrder.data.displaySubTotal}}
                   </v-list-item-title>
                   <v-list-item-title class="d-flex">
                     Shipping
                     <v-spacer />
-                    ${{openOrder.data.shippingTotal}}
+                    {{openOrder.data.displayShippingTotal}}
                   </v-list-item-title>
                   <v-list-item-title class="d-flex">
                     Tax&nbsp;<span class="caption">{{openOrder.data.displayTaxRate}}</span>
@@ -130,7 +130,7 @@
                   <v-list-item-title class="d-flex">
                     Total
                     <v-spacer />
-                    ${{openOrder.data.orderTotal}}
+                    {{openOrder.data.displayOrderTotal}}
                   </v-list-item-title>
                 </v-list-item-content>
               </v-list-item>
