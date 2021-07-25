@@ -1,5 +1,5 @@
 ﻿using Application.Commands;
-using Application.Models;
+using Application.Common.Models;
 using Application.Queries;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;

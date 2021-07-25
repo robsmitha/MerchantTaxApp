@@ -1,6 +1,6 @@
 ﻿using Application.Common.Settings;
-using Application.Interfaces;
-using Application.Models;
+using Application.Common.Interfaces;
+using Application.Common.Models;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using System;
@@ -11,7 +11,7 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Infrastructure.Services
 {
     public class TaxService : ITaxService
     {

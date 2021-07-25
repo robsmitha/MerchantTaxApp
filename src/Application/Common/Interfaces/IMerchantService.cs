@@ -1,8 +1,8 @@
-﻿using Application.Models;
+﻿using Application.Common.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Application.Interfaces
+namespace Application.Common.Interfaces
 {
     public interface IMerchantService
     {

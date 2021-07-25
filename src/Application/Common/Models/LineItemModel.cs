@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Application.Models
+namespace Application.Common.Models
 {
     public class LineItemModel : IMapFrom<LineItem>
     {

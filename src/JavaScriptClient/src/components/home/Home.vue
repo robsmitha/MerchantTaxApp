@@ -12,7 +12,7 @@
           <v-card v-if="merchantItems.loading">
             <v-card-text>
               <v-skeleton-loader
-                type="table-heading, card-heading, list-item-three-line, text, avatar"
+                type="table-heading, card-heading, list-item-three-line, text"
               ></v-skeleton-loader>
             </v-card-text>
           </v-card>
@@ -32,19 +32,12 @@
               ></v-select>
             </v-card-text>
             <v-card-actions class="pt-0">
-              <v-spacer />
-              <v-tooltip bottom>
-                  <template v-slot:activator="{ on, attrs }">
-                      <v-btn 
-                        icon 
-                        @click="addLineItem(item)"
-                        v-bind="attrs"
-                        v-on="on">
-                        <v-icon color="primary">mdi-cart-plus</v-icon>
-                      </v-btn>
-                  </template>
-                  <span>Add Line Item</span>
-              </v-tooltip>
+              <v-btn 
+                text
+                color="primary"
+                @click="addLineItem(item)">
+                Add
+              </v-btn>
             </v-card-actions>
           </v-card>
           <v-dialog

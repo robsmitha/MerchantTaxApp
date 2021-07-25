@@ -1,7 +1,7 @@
 ﻿
 using Application.Common.Exceptions;
-using Application.Interfaces;
-using Application.Models;
+using Application.Common.Interfaces;
+using Application.Common.Models;
 using AutoMapper;
 using Domain.Entities;
 using Infrastructure.Context;
@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Application.Services
+namespace Infrastructure.Services
 {
     public class MerchantService : IMerchantService
     {

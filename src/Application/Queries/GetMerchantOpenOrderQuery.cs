@@ -1,11 +1,7 @@
-﻿using Application.Commands;
-using Application.Common.Customization;
-using Application.Interfaces;
-using Application.Models;
+﻿using Application.Common.Interfaces;
+using Application.Common.Models;
 using FluentValidation;
-using Infrastructure.Context;
 using MediatR;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
 using System.Threading;
@@ -23,8 +19,8 @@ namespace Application.Queries
 
         public class Validator : AbstractValidator<GetMerchantOpenOrderQuery>
         {
-            private readonly ApplicationDbContext _context;
-            public Validator(ApplicationDbContext context)
+            private readonly IApplicationDbContext _context;
+            public Validator(IApplicationDbContext context)
             {
                 _context = context;
 

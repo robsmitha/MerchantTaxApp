@@ -1,7 +1,6 @@
-﻿using Application.Interfaces;
-using Application.Models;
+﻿using Application.Common.Interfaces;
+using Application.Common.Models;
 using FluentValidation;
-using Infrastructure.Context;
 using MediatR;
 using System;
 using System.Collections.Generic;

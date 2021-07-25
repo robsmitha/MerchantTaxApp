@@ -1,7 +1,6 @@
-﻿using Application.Interfaces;
-using Application.Models;
+﻿using Application.Common.Interfaces;
+using Application.Common.Models;
 using FluentValidation;
-using Infrastructure.Context;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -26,8 +25,8 @@ namespace Application.Commands
 
         public class Validator : AbstractValidator<AddLineItemCommand>
         {
-            private readonly ApplicationDbContext _context;
-            public Validator(ApplicationDbContext context)
+            private readonly IApplicationDbContext _context;
+            public Validator(IApplicationDbContext context)
             {
                 _context = context;
                 RuleFor(v => v.ItemId)

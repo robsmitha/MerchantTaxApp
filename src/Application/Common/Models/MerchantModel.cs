@@ -1,7 +1,7 @@
 ﻿using Application.Common.Mappings;
 using Domain.Entities;
 
-namespace Application.Models
+namespace Application.Common.Models
 {
     public class MerchantModel : IMapFrom<Merchant>
     {

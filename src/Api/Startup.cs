@@ -1,5 +1,5 @@
 using Application;
-using Application.Interfaces;
+using Application.Common.Interfaces;
 using Infrastructure;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,6 +8,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Api.Middleware;
+using Application.Common.Settings;
+using Infrastructure.Services;
 
 namespace Api
 {
@@ -25,6 +27,12 @@ namespace Api
         {
             services.AddInfrastructure();
             services.AddApplication(Configuration);
+
+            services.Configure<TaxJarSettings>(Configuration.GetSection(nameof(TaxJarSettings)));
+            services.AddTransient<IMerchantService, MerchantService>();
+            services.AddTransient<ITaxService, TaxService>();
+            services.AddTransient<ITaxJarCalculator, TaxJarCalculator>();
+            services.AddHttpClient<IExternalService, ExternalService>();
 
             services.AddControllers();
 

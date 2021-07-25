@@ -1,5 +1,5 @@
-﻿using Application.Interfaces;
-using Application.Models;
+﻿using Application.Common.Interfaces;
+using Application.Common.Models;
 using MediatR;
 using System;
 using System.Collections.Generic;

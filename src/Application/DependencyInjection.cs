@@ -4,9 +4,6 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using System.Reflection;
 using Application.Common.Behaviors;
-using Application.Services;
-using Application.Interfaces;
-using Application.Common.Settings;
 using Microsoft.Extensions.Configuration;
 
 namespace Application
@@ -28,12 +25,6 @@ namespace Application
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddAllRequestValidators();
-
-            services.Configure<TaxJarSettings>(configuration.GetSection(nameof(TaxJarSettings)));
-            services.AddTransient<IMerchantService, MerchantService>();
-            services.AddTransient<ITaxService, TaxService>();
-            services.AddTransient<ITaxJarCalculator, TaxJarCalculator>();
-            services.AddHttpClient<IExternalService, ExternalService>();
 
             return services;
         }
