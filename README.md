@@ -29,7 +29,7 @@ Contains classes for accessing external services as defined by interfaces in the
 - [TaxJarCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
 - [TaxService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
 - [MerchantService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
-- [ZipTaxCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs) (alternative tax calculator)
+- [ZipTaxCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/ZipTaxCalculator.cs) (alternative tax calculator)
 
 ## Api
 Contains api endpoints for accessing application layer logic.
