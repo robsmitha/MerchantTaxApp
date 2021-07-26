@@ -48,7 +48,7 @@ Note this is only needed if you want to run client app proxy over https, app wil
 4. Run ``cd PATH_TO_REPO_LOCATION/MerchantTaxApp/src/JavaScriptClient``
 5. Run ``.\setupcert.ps1`` to setup localhost cert
 6. Update src/JavaScriptClient/.env.local ``VUE_APP_USE_HTTPS`` to true
-6. Update src/JavaScriptClient/appsettings.Development.json ``Configuration.ClientUrl`` to **https**://localhost:8080
+7. Update src/JavaScriptClient/appsettings.Development.json ``Configuration.ClientUrl`` to **https**://localhost:8080
 
 
 
