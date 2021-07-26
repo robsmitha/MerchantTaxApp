@@ -38,10 +38,12 @@ Contains api endpoints for accessing application layer logic.
 Contains a VueJS single page application with .NET Core backend. 
 
 # Getting started
-1. Clone repo
-2. Open VS Code terminal
-3. Run ``cd src/JavaScriptClient``
-4. Run ``.\setupcert.ps1`` to setup localhost cert
+## Install localhost cert (if not already installed on machine)
+1. Replace PATH_TO_REPO in setupcert.ps1 for ``$webDir`` with path to your repo
+2. Clone repo
+3. Open VS Code terminal
+4. Run ``cd src/JavaScriptClient``
+5. Run ``.\setupcert.ps1`` to setup localhost cert
 
 # Running Project
 ## Api
