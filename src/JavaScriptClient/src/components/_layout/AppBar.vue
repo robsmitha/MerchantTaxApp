@@ -57,11 +57,12 @@
             <v-app-bar-nav-icon v-if="$vuetify.breakpoint.mdAndDown" @click.stop="drawerLeft = !drawerLeft"></v-app-bar-nav-icon>
             <v-skeleton-loader
                 v-if="activeMerchant.loading"
-                type="card-heading"
+                type="text"
+                width="250"
             ></v-skeleton-loader>
             <v-toolbar-title
                 v-else
-                class="ml-0 pl-md-4 pl-2 text-uppercase"
+                class="text-uppercase"
             >
                 <v-btn
                     large
@@ -72,34 +73,14 @@
                     <span v-else>Merchant Tax App</span>
                 </v-btn>
             </v-toolbar-title>
-            <!-- <v-spacer />
-            <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn 
-                    icon 
-                    text 
-                    to="/"
-                    v-bind="attrs"
-                    v-on="on">
-                        <v-icon>mdi-home-variant-outline</v-icon>
-                    </v-btn>
-                </template>
-                <span>Home</span>
-            </v-tooltip>
-            <v-tooltip bottom>
-                <template v-slot:activator="{ on, attrs }">
-                    <v-btn 
-                        icon 
-                        text 
-                        to="/orders"
-                        v-bind="attrs"
-                        v-on="on">
-                        <v-icon>mdi-history</v-icon>
-                    </v-btn>
-                </template>
-                <span>Order History</span>
-            </v-tooltip> -->
-            
+            <v-spacer />
+            <v-btn
+                :loading="openOrderLoading"
+                color="primary"
+                @click="onBrandClick"
+            >
+                <v-icon>mdi-cart</v-icon>&nbsp;{{openOrder.data ? openOrder.data.displaySubTotal : '$0'}}
+            </v-btn>
             
         </v-app-bar>
 
@@ -116,7 +97,9 @@ import { mapState, mapMutations, mapActions } from 'vuex'
     computed: {
         ...mapState({
             merchants: state => state.merchants.merchants,
-            activeMerchant: state => state.merchants.activeMerchant
+            activeMerchant: state => state.merchants.activeMerchant,
+            openOrder: state => state.merchants.openOrder,
+            openOrderLoading: state => state.merchants.openOrderLoading
         }),
         drawerLeft: {
             get: function () {

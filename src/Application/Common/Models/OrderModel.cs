@@ -26,7 +26,7 @@ namespace Application.Common.Models
 
         public List<LineItemModel> LineItems { get; set; }
         public decimal SubTotal => LineItems.Sum(l => l.ItemPrice * l.Quantity);
-        public decimal ShippingTotal => LineItems.Sum(l => l.ItemShipping * l.Quantity);
+        public decimal ShippingTotal => LineItems.GroupBy(l => l.ItemId).Sum(g => g.FirstOrDefault()?.ItemShipping ?? 0);
         public decimal OrderTotal => SubTotal + ShippingTotal + TaxAmount;
         public string OrderDate => string.Format("{0:F}", ModifiedAt);
 

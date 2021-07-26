@@ -18,6 +18,6 @@ namespace Application.Common.Models
         public decimal ItemShipping { get; set; }
         public int Quantity { get; set; }
         public decimal ItemTotal => ItemPrice * Quantity;
-        public decimal ShippingTotal => ItemShipping * Quantity;
+        public string ShippingTotal => ItemShipping.ToString("C");
     }
 }

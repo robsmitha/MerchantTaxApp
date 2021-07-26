@@ -16,7 +16,7 @@
               ></v-skeleton-loader>
             </v-card-text>
           </v-card>
-          <v-card v-else v-for="item in merchantItems.data" :key="item.id" class="mb-3">
+          <v-card v-else v-for="item in merchantItems.data" :key="item.id" class="mb-4">
             <v-card-title>{{ item.name }}<v-spacer/><span class="body-2">{{ item.price }}</span></v-card-title>
             <v-card-subtitle class="d-flex">
               <span>Max Allowed: {{ item.maxAllowed }}</span>
@@ -36,14 +36,30 @@
               ></v-select>
             </v-card-text>
             <v-card-actions class="pt-0">
-              <v-btn 
-                text
+              <v-btn
                 color="primary"
                 @click="addLineItem(item)">
                 Add
               </v-btn>
             </v-card-actions>
           </v-card>
+          <v-snackbar
+              v-model="snackbar"
+              top
+              :color="snackbarColor"
+            >
+              {{ snackbarText }}
+
+              <template v-slot:action="{ attrs }">
+                <v-btn
+                  text
+                  v-bind="attrs"
+                  @click="snackbar = false"
+                >
+                  Close
+                </v-btn>
+              </template>
+            </v-snackbar>
           <v-dialog
             v-model="errorDialog"
             width="350"
@@ -138,8 +154,8 @@
             <v-card-actions>
               <v-btn 
                 block
-                text
                 color="green"
+                class="white--text"
                 @click="updateOrderToPaid"
                 >
                 Complete Order
@@ -167,7 +183,10 @@ export default {
       data: null
     },
     errorDialog: false,
-    errorDialogText: null
+    errorDialogText: null,
+    snackbar: false,
+    snackbarText: null,
+    snackbarColor: null
   }),
   watch: {
     activeMerchant(val){
@@ -200,7 +219,7 @@ export default {
     ...mapActions('merchants', [
         'getOpenOrder'
     ]),
-    async addLineItem(item){
+    addLineItem(item){
       merchants.addLineItem(this.merchantId, {
         merchantId: this.merchantId,
         itemId: item.id,
@@ -210,6 +229,9 @@ export default {
         if(data?.orderId > 0){
           this.getItems()
           this.getOpenOrder({ id: this.merchantId})
+          this.snackbarColor = 'primary';
+          this.snackbarText = `${item.name} x${item.newQty} added to order`;
+          this.snackbar = true;
         } else if(data.error){
           this.errorDialog = true
           this.errorDialogText = data.error
@@ -237,6 +259,9 @@ export default {
       }).then(data => {
         if(data){
           this.getOpenOrder({ id: this.merchantId})
+          this.snackbarColor = 'red';
+          this.snackbarText = `${lineItem.itemName} removed from order.`;
+          this.snackbar = true;
         } else if(data.error){
           this.errorDialog = true
           this.errorDialogText = data.error
