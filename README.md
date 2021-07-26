@@ -38,12 +38,19 @@ Contains api endpoints for accessing application layer logic.
 Contains a VueJS single page application with .NET Core backend. 
 
 # Getting started
-## Install localhost cert
+
+## Install localhost cert (optional)
+Note this is only needed if you want to run client app proxy over https, app will run without it but hot reload won't work on changes made.
+
 1. Clone repo
 2. Replace PATH_TO_REPO_LOCATION in src/JavaScriptClient/setupcert.ps1 for ``$webDir`` with path to your repo
 3. Open PowerShell in Administrator mode
 4. Run ``cd PATH_TO_REPO_LOCATION/MerchantTaxApp/src/JavaScriptClient``
 5. Run ``.\setupcert.ps1`` to setup localhost cert
+6. Update src/JavaScriptClient/.env.local ``VUE_APP_USE_HTTPS`` to true
+6. Update src/JavaScriptClient/appsettings.Development.json ``Configuration.ClientUrl`` to **https**://localhost:8080
+
+
 
 # Running Project
 ## Api
@@ -62,4 +69,4 @@ Contains a VueJS single page application with .NET Core backend.
 7. Run ``dotnet build``
 8. Run ``dotnet run``
 
-[Open app in browser](https://localhost:5001)
+Open [JavaScriptClient](https://localhost:5001) in browser
