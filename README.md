@@ -2,8 +2,8 @@
 
 A demo solution for various merchants to order furniture, gift, home décor, rug, and apparel items with tax calcualtions based on locality.
 
-# Tech
-- NET Core
+# Tools
+- .NET Core
 - Entity Framework Core
 - VueJS
 - Mediator
