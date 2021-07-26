@@ -13,6 +13,30 @@ A demo solution for various merchants to order furniture, gift, home décor, rug
 - TaxJar
 - ZipTax (alternative tax calculator)
 
+# Overview
+
+## Domain
+Contains all entities specific to the domain with no dependencies on any other projects.
+
+## Application
+Contains all application logic and a dependency on the domain layer (has no depenedencies to other layer or project).
+- [ITaxCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Application/Common/Interfaces/ITaxCalculator.cs)
+- [ITaxService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Application/Common/Interfaces/ITaxService.cs)
+- [IMerchantService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Application/Common/Interfaces/IMerchantService.cs)
+
+## Infrastructure
+Contains classes for accessing external services as defined by interfaces in the application layer.
+- [TaxJarCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
+- [TaxService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
+- [MerchantService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
+- [ZipTaxCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs) (alternative tax calculator)
+
+## Api
+Contains api endpoints for accessing application layer logic.
+
+## JavaScript Client
+Contains a VueJS single page application with .NET Core backend. 
+
 # Getting started
 1. Clone repo
 2. Open VS Code terminal
@@ -36,28 +60,4 @@ A demo solution for various merchants to order furniture, gift, home décor, rug
 7. Run ``dotnet build``
 8. Run ``dotnet run``
 
-Got https://localhost:5001
-
-# Overview
-
-## Domain
-Contains all entities specific to the domain with no dependencies on any other projects.
-
-## Application
-Contains all application logic and a dependency on the domain layer (has no depenedencies to other layer or project). Interfaces outline
-- [ITaxCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Application/Common/Interfaces/ITaxCalculator.cs)
-- [ITaxService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Application/Common/Interfaces/ITaxService.cs)
-- [MerchantService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Application/Common/Interfaces/IMerchantService.cs)
-
-## Infrastructure
-Contains classes for accessing external services as defined by interfaces in the application layer.
-- [TaxJarCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
-- [TaxService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
-- [MerchantService](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs)
-- [ZipTaxCalculator](https://github.com/robsmitha/MerchantTaxApp/blob/master/src/Infrastructure/Services/TaxJarCalculator.cs) (alternative tax calculator)
-
-## Api
-Contains api endpoints for accessing application layer logic.
-
-## JavaScript Client
-Contains a VueJS single page application with .NET Core backend. 
+[Open app in browser](https://localhost:5001)
